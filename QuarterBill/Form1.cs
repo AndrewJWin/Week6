@@ -12,13 +12,15 @@ namespace QuarterBill
 {
     public partial class Form1 : Form
     {
-        List<Decimal> Quarters = new List<Decimal>();
+        // Global list of Quarters.
+        readonly List<Decimal> Quarters = new List<Decimal>();
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        // Calculate button method, runs through each TextBox quarter, validates and adds the value to the global list.
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             // Preparing variables;
@@ -58,11 +60,13 @@ namespace QuarterBill
                 average += quarter;
             }
             average = average / 4;
-
+            
+            // Post the total and average in currency.
             txbTotal.Text = total.ToString("C");
             txbAverage.Text = average.ToString("C");
         }
 
+        // ValidatePositiveDecimal bool method, returns a true or false if the provided string is valid bool - also outputs a decimal number and errorMsg.
         private bool ValidatePositiveDecimal(string text, out decimal number, out string errorMsg)
         {
             errorMsg = null;
